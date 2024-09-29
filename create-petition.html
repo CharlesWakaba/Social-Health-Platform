@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Petition - VoiceUp Africa</title>
+    <style>
+        /* ... (copy styles from index.html) ... */
+        form {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #e74c3c;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>VoiceUp Africa</h1>
+        <p>Empowering citizens, enhancing governance</p>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#petitions">Petitions</a></li>
+            <li><a href="#polls">Polls</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h2>Create a New Petition</h2>
+        <form id="petition-form">
+            <label for="title">Petition Title:</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="4" required></textarea>
+
+            <label for="target">Signature Target:</label>
+            <input type="number" id="target" name="target" required>
+
+            <input type="submit" value="Create Petition">
+        </form>
+    </div>
+    <script>
+        document.getElementById('petition-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const title = document.getElementById('title').value;
+            const description = document.getElementById('description').value;
+            const target = document.getElementById('target').value;
+
+            // In a real application, you would send this data to a server
+            alert(`Petition created successfully!\nTitle: ${title}\nDescription: ${description}\nTarget: ${target} signatures`);
+
+            // Clear the form
+            this.reset();
+        });
+    </script>
+</body>
+</html>
