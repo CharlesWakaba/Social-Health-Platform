@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education - VoiceUp Africa</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --primary-color: #3498db; /* Example primary color */
+            --secondary-color: #e74c3c; /* Example secondary color */
+            --card-background: #ffffff; /* Card background color */
+            --background-color: #f4f4f4; /* Page background color */
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav {
+            margin-top: 10px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin-right: 20px; /* Adjust spacing between items as needed */
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff; /* Change this to your desired color */
+            padding: 10px 15px; /* Add padding for a better clickable area */
+            border-radius: 5px; /* Match the style with the buttons */
+            transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+        }
+
+        nav ul li a:hover {
+            background-color: var(--secondary-color); /* Change to your desired hover color */
+            color: #fff; /* Change text color on hover */
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        .education-content {
+            background-color: var(--card-background);
+            border-radius: 5px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .resource-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .resource-item {
+            background-color: var(--background-color);
+            border-radius: 5px;
+            padding: 1rem;
+        }
+
+        .resource-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            background-color: var(--primary-color);
+            color: #fff;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <h1>VoiceUp Africa</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="petitions.html">Petitions</a></li>
+                    <li><a href="polls.html">Polls</a></li>
+                    <li><a href="create-petition.html">Create Petition</a></li>
+                    <li><a href="create-poll.html">Create Poll</a></li>
+                    <li><a href="education.html">Education</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="container">
+            <h2 class="section-title">Civic Education Resources</h2>
+            <div class="education-content">
+                <p>Empower yourself with knowledge about civic processes, governance, and democratic participation. Explore our curated resources to become a more informed and engaged citizen.</p>
+            </div>
+            <div class="resource-list">
+                <div class="resource-item">
+                    <h3>Understanding Democracy</h3>
+                    <p>Learn about the principles of democracy and how it functions in different African countries.</p>
+                </div>
+                <div class="resource-item">
+                    <h3>The Power of Petitions</h3>
+                    <p>Discover how petitions can drive change and impact policy-making processes.</p>
+                </div>
+                <div class="resource-item">
+                    <h3>Electoral Systems in Africa</h3>
+                    <p>Explore the various electoral systems used across the African continent.</p>
+                </div>
+                <div class="resource-item">
+                    <h3>Civic Rights and Responsibilities</h3>
+                    <p>Understand your rights as a citizen and the importance of civic engagement.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 VoiceUp Africa. All rights reserved.</p>
+    </footer>
+</body>
+</html>

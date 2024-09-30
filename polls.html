@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polls - VoiceUp Africa</title>
+    <style>
+        :root {
+            --primary-color: #e74c3c;
+            --secondary-color: #3498db;
+            --background-color: #f4f4f4;
+            --text-color: #333;
+            --card-background: #fff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        main {
+            margin-top: 80px;
+            padding: 2rem 0;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .poll {
+            background-color: var(--card-background);
+            border-radius: 5px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .poll h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .poll-option {
+            margin-bottom: 0.5rem;
+        }
+
+        .poll-option label {
+            margin-left: 0.5rem;
+        }
+
+        .submit-vote {
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-vote:hover {
+            background-color: #c0392b;
+        }
+
+        .poll-results {
+            margin-top: 1rem;
+        }
+
+        .result-bar {
+            background-color: var(--secondary-color);
+            height: 20px;
+            margin-bottom: 0.5rem;
+            border-radius: 10px;
+        }
+
+        footer {
+            background-color: var(--text-color);
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+            }
+
+            nav ul li {
+                margin: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <h1>VoiceUp Africa</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="petitions.html">Petitions</a></li>
+                    <li><a href="polls.html">Polls</a></li>
+                    <li><a href="education.html">Education</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h2 class="page-title">Active Polls</h2>
+            <div id="polls-container"></div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 VoiceUp Africa. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sample polls data (in a real app, this would come from a server)
+        const polls = [
+            {
+                id: 1,
+                question: "What is the most pressing issue in your community?",
+                options: ["Education", "Healthcare", "Infrastructure", "Employment"],
+                votes: [0, 0, 0, 0]
+            },
+            {
+                id: 2,
+                question: "Which sector should receive more government funding?",
+                options: ["Agriculture", "Technology", "Renewable Energy", "Small Businesses"],
+                votes: [0, 0, 0, 0]
+            }
+        ];
+
+        function displayPolls() {
+            const pollsContainer = document.getElementById('polls-container');
+            pollsContainer.innerHTML = '';
+
+            polls.forEach(poll => {
+                const pollDiv = document.createElement('div');
+                pollDiv.className = 'poll';
+                pollDiv.innerHTML = `
+                    <h3>${poll.question}</h3>
+                    <form id="poll-form-${poll.id}">
+                        ${poll.options.map((option, index) => `
+                            <div class="poll-option">
+                                <input type="radio" id="option-${poll.id}-${index}" name="poll-${poll.id}" value="${index}">
+                                <label for="option-${poll.id}-${index}">${option}</label>
+                            </div>
+                        `).join('')}
+                        <button type="submit" class="submit-vote">Vote</button>
+                    </form>
+                    <div class="poll-results" id="poll-results-${poll.id}"></div>
+                `;
+                pollsContainer.appendChild(pollDiv);
+
+                document.getElementById(`poll-form-${poll.id}`).addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const selectedOption = this.querySelector('input[type="radio"]:checked');
+                    if (selectedOption) {
+                        const optionIndex = parseInt(selectedOption.value);
+                        poll.votes[optionIndex]++;
+                        displayPollResults(poll);
+                    } else {
+                        alert("Please select an option before voting.");
+                    }
+                });
+            });
+        }
+
+        function displayPollResults(poll) {
+            const resultsDiv = document.getElementById(`poll-results-${poll.id}`);
+            resultsDiv.innerHTML = '<h4>Results:</h4>';
+
+            const totalVotes = poll.votes.reduce((sum, current) => sum + current, 0);
+            poll.options.forEach((option, index) => {
+                const percentage = totalVotes > 0 ? (poll.votes[index] / totalVotes * 100).toFixed(1) : 0;
+                resultsDiv.innerHTML += `
+                    <p>${option}: ${poll.votes[index]} votes (${percentage}%)</p>
+                    <div class="result-bar" style="width: ${percentage}%"></div>
+                `;
+            });
+        }
+
+        // Display polls when the page loads
+        window.onload = displayPolls;
+    </script>
+</body>
+</html>

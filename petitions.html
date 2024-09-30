@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Petition - VoiceUp Africa</title>
+    <title>Petitions - VoiceUp Africa</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         :root {
@@ -70,42 +70,52 @@
             padding: 2rem 0;
         }
 
-        form {
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+
+        .petition-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .petition-item {
             background-color: var(--card-background);
-            padding: 20px;
             border-radius: 5px;
+            padding: 1.5rem;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            margin: 0 auto;
+            transition: transform 0.3s ease;
         }
 
-        label {
-            display: block;
-            margin-bottom: 5px;
+        .petition-item:hover {
+            transform: translateY(-5px);
         }
 
-        input[type="text"],
-        input[type="number"],
-        textarea {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+        .petition-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
         }
 
-        input[type="submit"] {
-            background-color: var(--primary-color);
-            color: #ffffff;
-            padding: 10px 20px;
-            border: none;
+        .petition-item p {
+            margin-bottom: 1rem;
+        }
+
+        .sign-button {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: #fff;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
             border-radius: 5px;
-            cursor: pointer;
             transition: background-color 0.3s ease;
         }
 
-        input[type="submit"]:hover {
-            background-color: #c0392b;
+        .sign-button:hover {
+            background-color: #2980b9;
         }
 
         footer {
@@ -139,21 +149,31 @@
     </header>
 
     <main>
-        <div class="container">
-            <h2 class="section-title">Create a New Petition</h2>
-            <form id="petition-form">
-                <label for="title">Petition Title:</label>
-                <input type="text" id="title" name="title" required>
-
-                <label for="description">Description:</label>
-                <textarea id="description" name="description" rows="4" required></textarea>
-
-                <label for="target">Signature Target:</label>
-                <input type="number" id="target" name="target" required>
-
-                <input type="submit" value="Create Petition">
-            </form>
-        </div>
+        <section class="container">
+            <h2 class="section-title">Active Petitions</h2>
+            <div class="petition-list">
+                <div class="petition-item">
+                    <h3>Improve Education Infrastructure</h3>
+                    <p>We are calling for increased investment in education infrastructure across rural areas in Africa.</p>
+                    <a href="#" class="sign-button" onclick="signPetition(event)">Sign Petition</a>
+                </div>
+                <div class="petition-item">
+                    <h3>Clean Water Initiative</h3>
+                    <p>Support our petition to bring clean, accessible water to communities in need across the continent.</p>
+                    <a href="#" class="sign-button" onclick="signPetition(event)">Sign Petition</a>
+                </div>
+                <div class="petition-item">
+                    <h3>Protect Wildlife Habitats</h3>
+                    <p>Join us in preserving Africa's unique ecosystems and protecting endangered species.</p>
+                    <a href="#" class="sign-button" onclick="signPetition(event)">Sign Petition</a>
+                </div>
+                <div class="petition-item">
+                    <h3>Promote Renewable Energy</h3>
+                    <p>Support the transition to clean, renewable energy sources across African nations.</p>
+                    <a href="#" class="sign-button" onclick="signPetition(event)">Sign Petition</a>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -161,18 +181,10 @@
     </footer>
 
     <script>
-        document.getElementById('petition-form').addEventListener('submit', function (e) {
-            e.preventDefault();
-            const title = document.getElementById('title').value;
-            const description = document.getElementById('description').value;
-            const target = document.getElementById('target').value;
-
-            // In a real application, you would send this data to a server
-            alert(`Petition created successfully!\nTitle: ${title}\nDescription: ${description}\nTarget: ${target} signatures`);
-
-            // Clear the form
-            this.reset();
-        });
+        function signPetition(event) {
+            event.preventDefault(); // Prevent the default anchor click behavior
+            alert("Thank you for signing the petition!");
+        }
     </script>
 </body>
 

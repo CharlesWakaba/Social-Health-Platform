@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Poll - VoiceUp Africa</title>
+    <style>
+        :root {
+            --primary-color: #e74c3c;
+            --secondary-color: #3498db;
+            --background-color: #f4f4f4;
+            --text-color: #333;
+            --card-background: #fff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        main {
+            margin-top: 80px;
+            padding: 2rem 0;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        form {
+            background-color: var(--card-background);
+            border-radius: 5px;
+            padding: 2rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        #poll-options {
+            margin-bottom: 1rem;
+        }
+
+        .poll-option {
+            margin-bottom: 0.5rem;
+        }
+
+        #add-option {
+            background-color: var(--secondary-color);
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        #add-option:hover {
+            background-color: #2980b9;
+        }
+
+        input[type="submit"] {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #c0392b;
+        }
+
+        footer {
+            background-color: var(--text-color);
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+            }
+
+            nav ul li {
+                margin: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <h1>VoiceUp Africa</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="petitions.html">Petitions</a></li>
+                    <li><a href="polls.html">Polls</a></li>
+                    <li><a href="education.html">Education</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h2 class="page-title">Create a New Poll</h2>
+            <form id="create-poll-form">
+                <label for="poll-question">Poll Question:</label>
+                <textarea id="poll-question" name="question" rows="3" required></textarea>
+
+                <label>Poll Options:</label>
+                <div id="poll-options">
+                    <div class="poll-option">
+                        <input type="text" name="options[]" required>
+                    </div>
+                    <div class="poll-option">
+                        <input type="text" name="options[]" required>
+                    </div>
+                </div>
+                <button type="button" id="add-option">Add Option</button>
+
+                <input type="submit" value="Create Poll">
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 VoiceUp Africa. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const addOptionButton = document.getElementById('add-option');
+        const pollOptions = document.getElementById('poll-options');
+
+        addOptionButton.addEventListener('click', function() {
+            const newOption = document.createElement('div');
+            newOption.className = 'poll-option';
+            newOption.innerHTML = '<input type="text" name="options[]" required>';
+            pollOptions.appendChild(newOption);
+        });
+
+        document.getElementById('create-poll-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const question = document.getElementById('poll-question').value;
+            const options = Array.from(document.getElementsByName('options[]')).map(input => input.value);
+
+            // In a real application, you would send this data to a server
+            alert(`Poll created successfully!\nQuestion: ${question}\nOptions: ${options.join(', ')}`);
+
+            // Clear the form
+            this.reset();
+            while (pollOptions.children.length > 2) {
+                pollOptions.removeChild(pollOptions.lastChild);
+            }
+        });
+    </script>
+</body>
+</html>
